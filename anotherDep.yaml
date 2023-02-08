@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: getcertanother
+spec:
+  containers:
+  - name: getcertanother
+    image: neha16/getcert1:latest
+    imagePullPolicy: Always  # or IfNotPresent
+    volumeMounts:
+        - name: spire-agent-socket
+          mountPath: /run/spire/sockets
+  volumes:
+    - name: spire-agent-socket
+      hostPath:
+        path: /run/spire/sockets
+        type: Directory
